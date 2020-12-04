@@ -1,0 +1,125 @@
+#include <iostream>
+#include <cmath>
+#include <cstring>
+
+
+
+using namespace std;
+
+// func ÙŠØ­ØªÙˆÙŠ Ø¹Ù„Ù‰ Ø¯Ø§Ù„Ø© Ù…Ø¬Ø±Ø¯Ø© Ø¥Ø³Ù…Ù‡Ø§ Base Ù‡Ù†Ø§ Ù‚Ù…Ù†Ø§ Ø¨ØªØ¹Ø±ÙŠÙ ÙƒÙ„Ø§Ø³ Ø¥Ø³Ù…Ù‡
+class shape
+{
+    public:
+    	int R1 ,R2 , D ,nu ;
+        double ra , cont , area ;
+        double const pi= 3.14 ;
+    	         
+};
+
+// func Ùˆ ÙÙŠÙ‡ Ù‚Ù…Ù†Ø§ Ø¨ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø¯Ø§Ù„Ø© Ø§Ù„Ù…Ø¬Ø±Ø¯Ø© Base ÙŠØ±Ø« Ù…Ù† Ø§Ù„ÙƒÙ„Ø§Ø³ Derived Ù‡Ù†Ø§ Ù‚Ù…Ù†Ø§ Ø¨ØªØ¹Ø±ÙŠÙ Ù…Ø­ØªÙˆÙ‰ Ø§Ù„ÙƒÙ„Ø§Ø³
+class ellipse : public shape
+{
+    public:
+        void printA ()
+        { 
+             cout << "ellipse ----------- \n";
+             cout<<"Enter D, ra";
+             cin >> D>>   ra ;
+             cont= 2*pi*D+ra/2 ;
+             area= pi * ra*ra ;
+             cout <<"cont =   "<< cont ;
+             cout << "area =    "<< area ;
+
+        }  
+};
+class circle : public ellipse
+{
+    public:
+        void printB() 
+        {  
+            cout << "circle ----------- \n";
+            cont =D*ra ;
+            area =D*ra*ra ;
+            cout <<"cont circle =  "<< cont ;
+            cout <<"area circle =   "<< area ;
+        }
+};
+class polygon : public circle
+{
+    public :
+        void printC() 
+        {  
+            cout << "polygon ----------- \n";
+            cout<<"Enter nu, R1, R2";
+            cin >> nu  >>R1  >>R2 ;
+            cont  = R2 * R1 ;
+            area = nu/2 ;
+            cout << "cont polygon =   "<< cont ;
+            cout << "area polygon =    "<< area ;
+        }
+};
+class triangle : public polygon
+{
+    public :
+        void printD()  
+        { 
+             cout << "triangle ----------- \n";
+             cont = R1+R2+nu ;
+             area = R1 * R2 /2 ;
+             cout << "cont triangle =    " << cont ;
+             cout << "area triangle =    " << area ;
+        }
+};
+class rectangle : public triangle
+{
+    public :
+        void printF()
+        { 
+             cout << "rectangle ----------- \n";
+             cont = 2*R1+2*R2 ;
+             area = R2 *R1 ;
+             cout << "cont rectangle =    "<< cont ;
+             cout << "area rectangle =    " << area ;
+        }
+};
+class square : public rectangle
+{
+    public :
+        void printG()
+        {  
+            cout << "square ----------- \n";
+            cont = 4*R1 ;
+            area = R1 * R1 ;
+            cout << "cont square =    " << cont ;
+            cout << "area square =     "<< area ;
+        }
+};
+// main() Ù‡Ù†Ø§ Ù‚Ù…Ù†Ø§ Ø¨ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø¯Ø§Ù„Ø©
+int main()
+{
+    // d Ø¥Ø³Ù…Ù‡ Derived Ù‡Ù†Ø§ Ù‚Ù…Ù†Ø§ Ø¨Ø¥Ù†Ø´Ø§Ø¡ ÙƒØ§Ø¦Ù† Ù…Ù† Ø§Ù„ÙƒÙ„Ø§Ø³
+    square sel;
+    char shell;
+//	ÙÙŠ Ø§Ù„ÙƒÙ„Ø§Ø³ d Ù…Ù† Ø§Ù„ÙƒØ§Ø¦Ù† func() Ù‡Ù†Ø§ Ù‚Ù…Ù†Ø§ Ø¨Ø§Ø³ØªØ¯Ø¹Ø§Ø¡ Ø§Ù„Ø¯Ø§Ù„Ø©
+    cout<<"Please select your shape: ";
+    cin>>shell;
+    // Derived Ùˆ Ø§Ù„ØªÙŠ ØªÙ… ØªØ¹Ø±ÙŠÙÙ‡Ø§ 
+    if(shell=='T'){
+    	sel.printA();
+	}else if(shell=='H'){
+		sel.printB();
+	}else if(shell=='J'){
+		sel.printC();
+	}else if(shell=='I'){
+		sel.printD();
+	}else if(shell=='K'){
+		sel.printF();
+	}else if(shell=='M'){
+		sel.printG();
+	}else {
+		cout<<"Error, not defind";
+	}
+    
+    
+    return 0;
+}
